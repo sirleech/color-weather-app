@@ -1,0 +1,25 @@
+<html>
+
+<body>
+
+<div id="msgid">
+</div>
+<div id="apparent">
+</div>degrees C
+  
+</body>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="color_ramp.js"></script>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+  $.getJSON('output.json', function (data) {
+    $("#apparent").text(data.apparent_temp_c);
+    $("#msgid").text(getColorFromTemp(data.apparent_temp_c));
+    $("body").css("background-color", getColorFromTemp(data.apparent_temp_c));
+  });
+});
+
+</script>  
+</html>
