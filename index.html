@@ -1,11 +1,16 @@
 <html>
-
+<head>
+  <style>
+    body {background-color:gray;}
+  </style>
+</head>
 <body>
 
-<div id="msgid">
+<div id="errormsg">Error!! No Data!</div>
+<div id="temp">
 </div>
 <div id="apparent">
-</div>degrees C
+</div>
   
 </body>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -15,9 +20,11 @@
 
 $(document).ready(function(){
   $.getJSON('output.json', function (data) {
-    $("#apparent").text(data.apparent_temp_c);
-    $("#msgid").text(getColorFromTemp(data.apparent_temp_c));
+    $("#errormsg").text("");
+    $("#apparent").text(data.apparent_temp_c + " degrees C");
+    $("#temp").text(getColorFromTemp(data.apparent_temp_c));
     $("body").css("background-color", getColorFromTemp(data.apparent_temp_c));
+    $("body").css("color", getColorFromTemp(data.apparent_temp_c));
   });
 });
 
