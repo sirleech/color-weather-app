@@ -11,20 +11,24 @@
 </div>
 <div id="apparent">
 </div>
+<div id="time">
+</div>
   
 </body>
-<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+<script src="jquery/jquery-3.1.0.min.js"></script>
 <script src="color_ramp.js"></script>
 
 <script type="text/javascript">
 
-$(document).ready(function(){
+$(document).ready(function worker(){
   $.getJSON('output.json', function (data) {
     $("#errormsg").text("");
-    $("#apparent").text(data.apparent_temp_c + " degrees C");
+    $("#apparent").text("Feels like " + data.apparent_temp_c + " degrees C");
     $("#temp").text(getColorFromTemp(data.apparent_temp_c));
+    $("#time").text(data.time);
     $("body").css("background-color", getColorFromTemp(data.apparent_temp_c));
-    $("body").css("color", getColorFromTemp(data.apparent_temp_c));
+    //$("body").css("color", getColorFromTemp(data.apparent_temp_c));
+    setTimeout(worker, 1000);
   });
 });
 
