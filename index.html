@@ -2,14 +2,15 @@
 <head>
   <style>
     body {background-color:gray;}
+    div {color: white; font-family: -apple-system, "Helvetica Neue", "Lucida Grande"; opacity: 0.2;}
+    #temp {font-size: 20em;}
+    #time {position: absolute; top: 95%;}
   </style>
 </head>
 <body>
 
 <div id="errormsg">Error!! No Data!</div>
 <div id="temp">
-</div>
-<div id="apparent">
 </div>
 <div id="time">
 </div>
@@ -23,11 +24,9 @@
 $(document).ready(function worker(){
   $.getJSON('output.json', function (data) {
     $("#errormsg").text("");
-    $("#apparent").text("Feels like " + data.apparent_temp_c + " degrees C");
-    $("#temp").text(getColorFromTemp(data.apparent_temp_c));
+    $("#temp").text(data.current_temp_c);
     $("#time").text(data.time);
-    $("body").css("background-color", getColorFromTemp(data.apparent_temp_c));
-    //$("body").css("color", getColorFromTemp(data.apparent_temp_c));
+    $("body").css("background-color", getColorFromTemp(data.current_temp_c));
     setTimeout(worker, 1000);
   });
 });
