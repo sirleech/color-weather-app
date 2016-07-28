@@ -1,10 +1,12 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
+  <meta charset="utf-8"/>
   <style>
     body {background-color:gray;}
     div {color: white; font-family: -apple-system, "Helvetica Neue", "Lucida Grande"; opacity: 0.2;}
-    #temp {font-size: 20em;}
-    #time {position: absolute; top: 95%;}
+    #temp {font-size: 15em;}
+    #time {position: absolute; top: 95%; opacity: 0.3;}
   </style>
 </head>
 <body>
@@ -23,11 +25,17 @@
 
 $(document).ready(function worker(){
   $.getJSON('output.json', function (data) {
+    temp = data.apparent_temp_c;
     $("#errormsg").text("");
-    $("#temp").text(data.current_temp_c);
+    //$("#temp").text(temp + "°");
     $("#time").text(data.time);
-    $("body").css("background-color", getColorFromTemp(data.current_temp_c));
-    setTimeout(worker, 1000);
+    $("body").css("background-color", getColorFromTemp(temp));
+    if(temp < 8) {
+      $("#time").css("color","black");
+    } else {
+      $("#time").css("color","white");
+    }
+    setTimeout(worker, 30000);
   });
 });
 
