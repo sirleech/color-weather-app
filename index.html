@@ -3,17 +3,19 @@
 <head>
   <meta charset="utf-8"/>
   <style>
-    body {background-color:gray;}
-    div {color: white; font-family: -apple-system, "Helvetica Neue", "Lucida Grande"; opacity: 0.2;}
-    #temp {font-size: 15em;}
-    #time {position: absolute; top: 95%; opacity: 0.3;}
+    body {background-color:gray;  }
+    div {color: white; font-family: -apple-system, "Helvetica Neue", "Lucida Grande"; opacity: 0.2; margin-left: 20px;}
+    #temp {font-size: 15em; font-weight: 700; letter-spacing: -0.05em;}
+    #windSpeed {font-size: 6em;}
+    #time {position: absolute; top: 95%; font-size: 11px;}
   </style>
 </head>
 <body>
 
 <div id="errormsg">Error!! No Data!</div>
-<div id="temp">
+<div class="transparent" id="temp">
 </div>
+<div class="transparent" id="windSpeed"></div>
 <div id="time">
 </div>
   
@@ -25,15 +27,24 @@
 
 $(document).ready(function worker(){
   $.getJSON('output.json', function (data) {
-    temp = data.apparent_temp_c;
+    
+    temp = data.current_temp_c;
+    windSpeed = data.wind_speed_kmh;
+    windDirection = data.wind_cardinal_direction;
+    
     $("#errormsg").text("");
-    //$("#temp").text(temp + "°");
+    $("#windSpeed").text(windSpeed + "km/h " + windDirection);
+    $("#temp").text(temp + "°");
     $("#time").text(data.time);
     $("body").css("background-color", getColorFromTemp(temp));
-    if(temp < 8) {
+    if(temp < 7) {
+      $(".transparent").css("color","black");
+      $(".transparent").css("opacity","0.07");
       $("#time").css("color","black");
     } else {
-      $("#time").css("color","white");
+      $(".transparent").css("color","white");
+      $(".transparent").css("opacity","0.2");
+       $("#time").css("color","white");
     }
     setTimeout(worker, 30000);
   });
