@@ -3,11 +3,12 @@
 <head>
   <meta charset="utf-8"/>
   <style>
-    body {background-color:gray;  }
-    div {color: white; font-family: -apple-system, "Helvetica Neue", "Lucida Grande"; opacity: 0.2; margin-left: 20px;}
-    #temp {font-size: 15em; font-weight: 700; letter-spacing: -0.05em;}
-    #windSpeed {font-size: 6em;}
-    #time {position: absolute; top: 95%; font-size: 11px;}
+    body {background-color:gray; overflow:hidden;}
+    #temp, #windSpeed, #time {color: white; font-family: -apple-system, "Helvetica Neue", "Lucida Grande"; margin-left: 20px;}
+    #temp {font-size: 8em; font-weight: 700; letter-spacing: -0.05em;}
+    #windSpeed {position: relative; font-size: 2.5em; left: 10px; top: -10px;}
+    #time {position: absolute; top: 94%; font-size: 11px; color: black; z-index: 10; opacity: 0.3;}
+    #footer {background-color: white; width: 100%; height: 10%; position: absolute; top: 90%; right: 0%;}
   </style>
 </head>
 <body>
@@ -18,6 +19,7 @@
 <div class="transparent" id="windSpeed"></div>
 <div id="time">
 </div>
+<div id="footer">&nbsp;</div>
   
 </body>
 <script src="jquery/jquery-3.1.0.min.js"></script>
@@ -40,11 +42,9 @@ $(document).ready(function worker(){
     if(temp < 7) {
       $(".transparent").css("color","black");
       $(".transparent").css("opacity","0.07");
-      $("#time").css("color","black");
     } else {
       $(".transparent").css("color","white");
-      $(".transparent").css("opacity","0.2");
-       $("#time").css("color","white");
+      $(".transparent").css("opacity","0.3");
     }
     setTimeout(worker, 30000);
   });
