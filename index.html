@@ -9,6 +9,7 @@
     #windSpeed {position: relative; font-size: 2.5em; left: 10px; top: -10px;}
     #time {position: absolute; top: 94%; font-size: 11px; color: black; z-index: 10; opacity: 0.3;}
     #footer {background-color: white; width: 100%; height: 10%; position: absolute; top: 90%; right: 0%;}
+    #pinwheel {width: 80px; opacity: 0.6; position: relative; left: 20px; top: 10px;}
   </style>
 </head>
 <body>
@@ -19,6 +20,7 @@
 <div class="transparent" id="windSpeed"></div>
 <div id="time">
 </div>
+<!--<img id="pinwheel" src="pinwheel-white.png" />-->
 <div id="footer">&nbsp;</div>
   
 </body>
@@ -27,27 +29,34 @@
 
 <script type="text/javascript">
 
-$(document).ready(function worker(){
-  $.getJSON('output.json', function (data) {
-    
-    temp = data.current_temp_c;
-    windSpeed = data.wind_speed_kmh;
-    windDirection = data.wind_cardinal_direction;
-    
-    $("#errormsg").text("");
-    $("#windSpeed").text(windSpeed + "km/h " + windDirection);
-    $("#temp").text(temp + "°");
-    $("#time").text(data.time);
-    $("body").css("background-color", getColorFromTemp(temp));
-    if(temp < 7) {
-      $(".transparent").css("color","black");
-      $(".transparent").css("opacity","0.07");
-    } else {
-      $(".transparent").css("color","white");
-      $(".transparent").css("opacity","0.3");
-    }
-    setTimeout(worker, 30000);
-  });
+$(document).ready(function (){
+  
+  worker();
+  
+  function worker(){
+    $.getJSON('output.json', function (data) {
+
+      temp = data.current_temp_c;
+      windSpeed = data.wind_speed_kmh;
+      windDirection = data.wind_cardinal_direction;
+      
+      //temp = -7;
+
+      $("#errormsg").text("");
+      $("#windSpeed").text(windSpeed + "km/h " + windDirection);
+      $("#temp").text(temp + "°");
+      $("#time").text(data.time);
+      $("body").css("background-color", getColorFromTemp(temp));
+      if(temp < 7) {
+        $(".transparent").css("color","black");
+        $(".transparent").css("opacity","0.07");
+      } else {
+        $(".transparent").css("color","white");
+        $(".transparent").css("opacity","0.3");
+      }
+      setTimeout(worker, 30000);
+    });
+  }
 });
 
 </script>  
