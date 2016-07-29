@@ -2,15 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8"/>
-  <style>
-    body {background-color:gray; overflow:hidden;}
-    #temp, #windSpeed, #time {color: white; font-family: -apple-system, "Helvetica Neue", "Lucida Grande"; margin-left: 20px;}
-    #temp {font-size: 8em; font-weight: 700; letter-spacing: -0.05em;}
-    #windSpeed {position: relative; font-size: 2.5em; left: 10px; top: -10px;}
-    #time {position: absolute; top: 94%; font-size: 11px; color: black; z-index: 10; opacity: 0.3;}
-    #footer {background-color: white; width: 100%; height: 10%; position: absolute; top: 90%; right: 0%;}
-    #pinwheel {width: 80px; opacity: 0.6; position: relative; left: 20px; top: 10px;}
-  </style>
+  <link rel="stylesheet" type="text/css" href="style.css"/ >
 </head>
 <body>
 
@@ -20,7 +12,7 @@
 <div class="transparent" id="windSpeed"></div>
 <div id="time">
 </div>
-<!--<img id="pinwheel" src="pinwheel-white.png" />-->
+<img id="pinwheel" src="pinwheel-white.png" />
 <div id="footer">&nbsp;</div>
   
 </body>
@@ -31,9 +23,9 @@
 
 $(document).ready(function (){
   
-  worker();
+  getWeatherData();
   
-  function worker(){
+  function getWeatherData(){
     $.getJSON('output.json', function (data) {
 
       temp = data.current_temp_c;
@@ -41,6 +33,24 @@ $(document).ready(function (){
       windDirection = data.wind_cardinal_direction;
       
       //temp = -7;
+      //windSpeed = 55;
+      
+      $("#pinwheel").removeClass();
+      
+      if (windSpeed > 50){
+        $("#pinwheel").addClass("gale");
+      } else if (windSpeed > 35){
+        $("#pinwheel").addClass("heavyWind");
+      } else if(windSpeed > 25 ) {
+        $("#pinwheel").addClass("moderateWind");
+      } else if(windSpeed > 10 ){
+        $("#pinwheel").addClass("moderateLightWind");
+      } else if(windSpeed > 0 ){
+        $("#pinwheel").addClass("lightWind");
+      } else {
+        $("#pinwheel").addClass("calm");
+      }
+      
 
       $("#errormsg").text("");
       $("#windSpeed").text(windSpeed + "km/h " + windDirection);
@@ -54,7 +64,7 @@ $(document).ready(function (){
         $(".transparent").css("color","white");
         $(".transparent").css("opacity","0.3");
       }
-      setTimeout(worker, 30000);
+      setTimeout(getWeatherData, 30000);
     });
   }
 });
