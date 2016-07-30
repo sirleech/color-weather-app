@@ -62,34 +62,34 @@ $(document).ready(function (){
   getWeatherData();
   
   function getWeatherData(){
-    $.getJSON('output.json', function (data) {
-
-      temp = data.current_temp_c;
-      windSpeed = data.wind_speed_kmh;
-      windDirection = data.wind_cardinal_direction;
-      
-      //temp = 28;
-      //windSpeed = 10;
-
-      setPinwheelSpeed(windSpeed);
-
-      $("#errormsg").text("");
-      $("#windSpeed").text(windSpeed + "km/h ");
-      $("#temp").text(temp + "°");
-      $("#time").text(data.time);
-      $("body").css("background-color", getColorFromTemp(temp));
-      if(temp < 7 && temp > -5) {
-        $(".transparent").css("color","black");
-        $(".transparent").css("opacity","0.07");
-        $("#pinwheel").attr("src","pinwheel-black.png");
-        $("#pinwheel").css("opacity","0.1");
-      } else {
-        $(".transparent").css("color","white");
-        $(".transparent").css("opacity","0.6");
-        $("#pinwheel").attr("src","pinwheel-white.png");
-        $("#pinwheel").css("opacity","0.6");
-      }
-      setTimeout(getWeatherData, 30000);
+    $.ajax({
+      dataType: "json",
+      url: 'output.json',
+      success: function (data){
+        temp = data.current_temp_c;
+        windSpeed = data.wind_speed_kmh;
+        windDirection = data.wind_cardinal_direction;
+        setPinwheelSpeed(windSpeed);
+        $("#errormsg").text("");
+        $("#windSpeed").text(windSpeed + "km/h ");
+        $("#temp").text(temp + "°");
+        $("#time").text(data.time);
+        $("body").css("background-color", getColorFromTemp(temp));
+        if(temp < 7 && temp > -5) {
+          $(".transparent").css("color","black");
+          $(".transparent").css("opacity","0.07");
+          $("#pinwheel").attr("src","pinwheel-black.png");
+          $("#pinwheel").css("opacity","0.1");
+        } else {
+          $(".transparent").css("color","white");
+          $(".transparent").css("opacity","0.6");
+          $("#pinwheel").attr("src","pinwheel-white.png");
+          $("#pinwheel").css("opacity","0.6");
+        }
+      },
+      complete: function() {
+        setTimeout(getWeatherData, 30000);
+      } 
     });
   }
 });
