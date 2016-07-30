@@ -25,6 +25,7 @@
 $(document).ready(function (){
   
   var windSpeed = 0;
+  var previousWindSpeed;
   
   function setPinwheelSpeed(speedKmString) {
     
@@ -38,14 +39,24 @@ $(document).ready(function (){
       secondsPerSpin = 0;
     }
     
+    secondsPerSpin = Math.round(secondsPerSpin * 100) /100;
     secondsPerSpinString = secondsPerSpin.toString() + "s";
     cssString = "spin1 " + secondsPerSpinString + " infinite linear";
     
-    $("#pinwheel").css("-webkit-animation",cssString)
-    $("#pinwheel").css("-moz-animation",cssString)
-    $("#pinwheel").css("-o-animation",cssString)
-    $("#pinwheel").css(" -ms-animation",cssString)
-    $("#pinwheel").css("animation",cssString)
+    // Safari hack- css won't change speed without this
+    if (previousWindSpeed != speedKmString) {
+      pinWheel = $("#pinwheel");
+      $("#pinwheel").remove();
+      $("body").append(pinWheel);
+    }
+    
+    previousWindSpeed = speedKmString;
+      
+    $("#pinwheel").css("-webkit-animation",cssString);
+    $("#pinwheel").css("-moz-animation",cssString);
+    $("#pinwheel").css("-o-animation",cssString);
+    $("#pinwheel").css("-ms-animation",cssString);
+    $("#pinwheel").css("animation",cssString);
   }
   
   getWeatherData();
@@ -63,7 +74,7 @@ $(document).ready(function (){
       setPinwheelSpeed(windSpeed);
 
       $("#errormsg").text("");
-      $("#windSpeed").text(windSpeed + "km/h " + windDirection);
+      $("#windSpeed").text(windSpeed + "km/h ");
       $("#temp").text(temp + "°");
       $("#time").text(data.time);
       $("body").css("background-color", getColorFromTemp(temp));
