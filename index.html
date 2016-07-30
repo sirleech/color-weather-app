@@ -31,7 +31,7 @@ $(document).ready(function (){
     var secondsPerSpin,secondsPerSpinString,cssString,speedKm;
     speedKm = parseInt(speedKmString);   
     if (speedKm > 0){
-      secondsPerSpin = (1/speedKm) * 40;
+      secondsPerSpin = (1/speedKm) * 15;
     } else {
       secondsPerSpin = 0;
     }
@@ -65,7 +65,7 @@ $(document).ready(function (){
         windSpeed = data.wind_speed_kmh;
         windDirection = data.wind_cardinal_direction;
         //temp = 3;
-        //windSpeed = 15;
+        //windSpeed = 38;
         setPinwheelSpeed(windSpeed);
         $("#errormsg").text("");
         $("#windSpeed").text(windSpeed + "km/h ");
