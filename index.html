@@ -24,10 +24,23 @@
 
 $(document).ready(function (){
   
-  function setPinwheelSpeed(speedKm) {
-    var secondsPerSpin = 1/speedKm * 15;
-    var secondsPerSpinString = secondsPerSpin.toString() + "s";
-    var cssString = "spin1 " + secondsPerSpinString + " infinite linear";
+  var windSpeed = 0;
+  
+  function setPinwheelSpeed(speedKmString) {
+    
+    var secondsPerSpin,secondsPerSpinString,cssString,speedKm;
+    
+    speedKm = parseInt(speedKmString);
+        
+    if (speedKm > 0){
+      secondsPerSpin = 1/speedKm * 15;
+    } else {
+      secondsPerSpin = 0;
+    }
+    
+    secondsPerSpinString = secondsPerSpin.toString() + "s";
+    cssString = "spin1 " + secondsPerSpinString + " infinite linear";
+    
     $("#pinwheel").css("-webkit-animation",cssString)
     $("#pinwheel").css("-moz-animation",cssString)
     $("#pinwheel").css("-o-animation",cssString)
@@ -45,8 +58,8 @@ $(document).ready(function (){
       windDirection = data.wind_cardinal_direction;
       
       //temp = -7;
-      //windSpeed = 55;
-      
+      //windSpeed = 10;
+
       setPinwheelSpeed(windSpeed);
 
       $("#errormsg").text("");
