@@ -28,28 +28,23 @@ $(document).ready(function (){
   var previousWindSpeed;
   
   function setPinwheelSpeed(speedKmString) {
-    
     var secondsPerSpin,secondsPerSpinString,cssString,speedKm;
-    
-    speedKm = parseInt(speedKmString);
-        
+    speedKm = parseInt(speedKmString);   
     if (speedKm > 0){
-      secondsPerSpin = 1/speedKm * 15;
+      secondsPerSpin = 1/speedKm * 30;
     } else {
       secondsPerSpin = 0;
     }
-    
     secondsPerSpin = Math.round(secondsPerSpin * 100) /100;
     secondsPerSpinString = secondsPerSpin.toString() + "s";
     cssString = "spin1 " + secondsPerSpinString + " infinite linear";
-    
+  
     // Safari hack- css won't change speed without this
     if (previousWindSpeed != speedKmString) {
       pinWheel = $("#pinwheel");
       $("#pinwheel").remove();
       $("body").append(pinWheel);
     }
-    
     previousWindSpeed = speedKmString;
       
     $("#pinwheel").css("-webkit-animation",cssString);
@@ -69,6 +64,8 @@ $(document).ready(function (){
         temp = data.current_temp_c;
         windSpeed = data.wind_speed_kmh;
         windDirection = data.wind_cardinal_direction;
+        //temp = 25;
+        //windSpeed = 40;
         setPinwheelSpeed(windSpeed);
         $("#errormsg").text("");
         $("#windSpeed").text(windSpeed + "km/h ");
@@ -77,9 +74,9 @@ $(document).ready(function (){
         $("body").css("background-color", getColorFromTemp(temp));
         if(temp < 7 && temp > -5) {
           $(".transparent").css("color","black");
-          $(".transparent").css("opacity","0.07");
+          $(".transparent").css("opacity","0.2");
           $("#pinwheel").attr("src","pinwheel-black.png");
-          $("#pinwheel").css("opacity","0.1");
+          $("#pinwheel").css("opacity","0.2");
         } else {
           $(".transparent").css("color","white");
           $(".transparent").css("opacity","0.6");
