@@ -6,15 +6,7 @@ body {background-color:gray; overflow:hidden;}
 #footer {background-color: white; width: 100%; height: 10%; position: absolute; top: 90%; right: 0%;}
 #pinwheel {width: 80px; opacity: 1; position: relative; left: 20px; top: 10px;}
 
-.calm
-{
-  -webkit-animation: none;
-  -moz-animation: none;
-  -o-animation: none;
-  -ms-animation: none;
-  animation: none;
-}
-
+/**
 .lightWind
 {
   -webkit-animation: spin1 4s infinite linear;
@@ -22,43 +14,8 @@ body {background-color:gray; overflow:hidden;}
   -o-animation: spin1 4s infinite linear;
   -ms-animation: spin1 4s infinite linear;
   animation: spin1 4s infinite linear;
-}
+} **/
 
-.moderateLightWind
-{
-  -webkit-animation: spin1 2s infinite linear;
-  -moz-animation: spin1 2s infinite linear;
-  -o-animation: spin1 2s infinite linear;
-  -ms-animation: spin1 2s infinite linear;
-  animation: spin1 2s infinite linear;
-}
-
-.moderateWind
-{
-  -webkit-animation: spin1 1s infinite linear;
-  -moz-animation: spin1 1s infinite linear;
-  -o-animation: spin1 1s infinite linear;
-  -ms-animation: spin1 1s infinite linear;
-  animation: spin1 1s infinite linear;
-}
-
-.heavyWind
-{
-  -webkit-animation: spin1 0.4s infinite linear;
-  -moz-animation: spin1 0.4s infinite linear;
-  -o-animation: spin1 0.4s infinite linear;
-  -ms-animation: spin1 0.4s infinite linear;
-  animation: spin1 0.4s infinite linear;
-}
-
-.gale
-{
-  -webkit-animation: spin1 0.2s infinite linear;
-  -moz-animation: spin1 0.2s infinite linear;
-  -o-animation: spin1 0.2s infinite linear;
-  -ms-animation: spin1 0.2s infinite linear;
-  animation: spin1 0.2s infinite linear;
-}
 
 @-webkit-keyframes spin1 {
 0% { -webkit-transform: rotate(0deg);}

@@ -20,8 +20,20 @@
 <script src="color_ramp.js"></script>
 
 <script type="text/javascript">
+  
 
 $(document).ready(function (){
+  
+  function setPinwheelSpeed(speedKm) {
+    var secondsPerSpin = 1/speedKm * 15;
+    var secondsPerSpinString = secondsPerSpin.toString() + "s";
+    var cssString = "spin1 " + secondsPerSpinString + " infinite linear";
+    $("#pinwheel").css("-webkit-animation",cssString)
+    $("#pinwheel").css("-moz-animation",cssString)
+    $("#pinwheel").css("-o-animation",cssString)
+    $("#pinwheel").css(" -ms-animation",cssString)
+    $("#pinwheel").css("animation",cssString)
+  }
   
   getWeatherData();
   
@@ -35,22 +47,7 @@ $(document).ready(function (){
       //temp = -7;
       //windSpeed = 55;
       
-      $("#pinwheel").removeClass();
-      
-      if (windSpeed > 50){
-        $("#pinwheel").addClass("gale");
-      } else if (windSpeed > 35){
-        $("#pinwheel").addClass("heavyWind");
-      } else if(windSpeed > 25 ) {
-        $("#pinwheel").addClass("moderateWind");
-      } else if(windSpeed > 10 ){
-        $("#pinwheel").addClass("moderateLightWind");
-      } else if(windSpeed > 0 ){
-        $("#pinwheel").addClass("lightWind");
-      } else {
-        $("#pinwheel").addClass("calm");
-      }
-      
+      setPinwheelSpeed(windSpeed);
 
       $("#errormsg").text("");
       $("#windSpeed").text(windSpeed + "km/h " + windDirection);
