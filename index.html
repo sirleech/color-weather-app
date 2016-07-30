@@ -31,7 +31,7 @@ $(document).ready(function (){
     var secondsPerSpin,secondsPerSpinString,cssString,speedKm;
     speedKm = parseInt(speedKmString);   
     if (speedKm > 0){
-      secondsPerSpin = 1/speedKm * 30;
+      secondsPerSpin = (1/speedKm) * 40;
     } else {
       secondsPerSpin = 0;
     }
@@ -64,8 +64,8 @@ $(document).ready(function (){
         temp = data.current_temp_c;
         windSpeed = data.wind_speed_kmh;
         windDirection = data.wind_cardinal_direction;
-        //temp = 25;
-        //windSpeed = 40;
+        //temp = 3;
+        //windSpeed = 15;
         setPinwheelSpeed(windSpeed);
         $("#errormsg").text("");
         $("#windSpeed").text(windSpeed + "km/h ");
@@ -76,12 +76,12 @@ $(document).ready(function (){
           $(".transparent").css("color","black");
           $(".transparent").css("opacity","0.2");
           $("#pinwheel").attr("src","pinwheel-black.png");
-          $("#pinwheel").css("opacity","0.2");
+          $("#pinwheel").css("opacity","0.075");
         } else {
           $(".transparent").css("color","white");
-          $(".transparent").css("opacity","0.6");
+          $(".transparent").css("opacity","0.75");
           $("#pinwheel").attr("src","pinwheel-white.png");
-          $("#pinwheel").css("opacity","0.6");
+          $("#pinwheel").css("opacity","0.4");
         }
       },
       complete: function() {
