@@ -68,7 +68,7 @@ $(document).ready(function (){
       windSpeed = data.wind_speed_kmh;
       windDirection = data.wind_cardinal_direction;
       
-      //temp = -7;
+      //temp = -8;
       //windSpeed = 10;
 
       setPinwheelSpeed(windSpeed);
@@ -78,12 +78,16 @@ $(document).ready(function (){
       $("#temp").text(temp + "°");
       $("#time").text(data.time);
       $("body").css("background-color", getColorFromTemp(temp));
-      if(temp < 7) {
+      if(temp < 7 && temp > -5) {
         $(".transparent").css("color","black");
         $(".transparent").css("opacity","0.07");
+        $("#pinwheel").attr("src","pinwheel-black.png");
+        $("#pinwheel").css("opacity","0.1");
       } else {
         $(".transparent").css("color","white");
         $(".transparent").css("opacity","0.3");
+        $("#pinwheel").attr("src","pinwheel-white.png");
+        $("#pinwheel").css("opacity","0.6");
       }
       setTimeout(getWeatherData, 30000);
     });
