@@ -10,6 +10,7 @@
 <div class="transparent" id="temp">
 </div>
 <div class="transparent" id="windSpeed"></div>
+<div class="transparent" id="pressure"></div>
 <div id="time">
 </div>
 
@@ -63,14 +64,17 @@ $(document).ready(function (){
       success: function (data){
         temp = data.observations.data[0].air_temp;
         windSpeed = data.observations.data[0].wind_spd_kmh;
+        windDirection = data.observations.data[0].wind_dir;
         time = data.observations.header[0].refresh_message;
+        pressure = data.observations.data[0].press_msl;
 
         //temp = 3;
         //windSpeed = 38;
         //setPinwheelSpeed(windSpeed);
         $("#errormsg").text("");
-        $("#windSpeed").text(windSpeed + "km/h ");
+        $("#windSpeed").text(windSpeed + "km/h " + windDirection);
         $("#temp").text(temp + "°");
+        $("#pressure").text(pressure + ' MSLP \(hPa\)');
         $("#time").text(time);
         $("body").css("background-color", getColorFromTemp(temp));
         if(temp < 7 && temp > -5) {
@@ -86,7 +90,7 @@ $(document).ready(function (){
         }
       },
       complete: function() {
-        setTimeout(getWeatherData, 30000);
+        setTimeout(getWeatherData, 120000);
       } 
     });
   }

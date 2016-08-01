@@ -1,8 +1,9 @@
 body {background-color:gray; overflow:hidden;}
-#temp, #windSpeed, #time {color: white; font-family: -apple-system, "Helvetica Neue", "Lucida Grande"; margin-left: 20px;}
+#temp, #windSpeed, #time , #pressure {color: white; font-family: -apple-system, "Helvetica Neue", "Lucida Grande"; margin-left: 20px;}
 #temp {font-size: 13em; font-weight: 700; letter-spacing: -0.05em;}
 #windSpeed {position: relative; font-size: 6em; left: 10px; top: -10px;}
 #time {position: absolute; top: 94%; font-size: 15px; color: black; z-index: 10; opacity: 0.2; left: 10px;}
+#pressure {position: relative; font-size: 3em; left: 10px; top: 20px;
 #footer {background-color: white; width: 100%; height: 10%; position: absolute; top: 90%; right: 0%;}
 #pinwheel {width: 180px; position: relative; left: 24px; top: 10px;}
 
