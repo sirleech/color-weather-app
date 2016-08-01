@@ -12,7 +12,7 @@
 <div class="transparent" id="windSpeed"></div>
 <div id="time">
 </div>
-<img id="pinwheel" src="pinwheel-white.png" />
+
 <div id="footer">&nbsp;</div>
   
 </body>
@@ -61,27 +61,28 @@ $(document).ready(function (){
       dataType: "json",
       url: 'output.json',
       success: function (data){
-        temp = data.current_temp_c;
-        windSpeed = data.wind_speed_kmh;
-        windDirection = data.wind_cardinal_direction;
+        temp = data.observations.data[0].air_temp;
+        windSpeed = data.observations.data[0].wind_spd_kmh;
+        time = data.observations.header[0].refresh_message;
+
         //temp = 3;
         //windSpeed = 38;
-        setPinwheelSpeed(windSpeed);
+        //setPinwheelSpeed(windSpeed);
         $("#errormsg").text("");
         $("#windSpeed").text(windSpeed + "km/h ");
         $("#temp").text(temp + "°");
-        $("#time").text(data.time);
+        $("#time").text(time);
         $("body").css("background-color", getColorFromTemp(temp));
         if(temp < 7 && temp > -5) {
           $(".transparent").css("color","black");
           $(".transparent").css("opacity","0.2");
-          $("#pinwheel").attr("src","pinwheel-black.png");
-          $("#pinwheel").css("opacity","0.075");
+          //$("#pinwheel").attr("src","pinwheel-black.png");
+          //$("#pinwheel").css("opacity","0.075");
         } else {
           $(".transparent").css("color","white");
           $(".transparent").css("opacity","0.75");
-          $("#pinwheel").attr("src","pinwheel-white.png");
-          $("#pinwheel").css("opacity","0.4");
+          //$("#pinwheel").attr("src","pinwheel-white.png");
+          //$("#pinwheel").css("opacity","0.4");
         }
       },
       complete: function() {
