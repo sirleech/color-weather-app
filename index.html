@@ -69,6 +69,7 @@ $(document).ready(function (){
         time = data.observations.header[0].refresh_message;
         pressure = data.observations.data[0].press_msl;
         humidity = data.observations.data[0].rel_hum;
+        feelsLike = data.observations.data[0].apparent_t;
 
         //temp = 3;
         //windSpeed = 38;
@@ -76,7 +77,10 @@ $(document).ready(function (){
         $("#errormsg").text("");
         $("#windSpeed").text(windSpeed + "km/h " + windDirection);
         $("#temp").text(temp + "°");
-        $("#other_params").html(humidity + "% humidity <br/>" + pressure + ' MSLP \(hPa\)');
+        $("#other_params").html
+          ("<strong>" + humidity + "</strong>% humidity <br/><strong>" 
+           + pressure + "</strong> MSLP \(hPa\) <br/>" 
+           + "Feels like <strong>" + feelsLike + "</strong>°");
         $("#time").text(time);
         $("body").css("background-color", getColorFromTemp(temp));
         if(temp < 7 && temp > -5) {
