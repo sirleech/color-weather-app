@@ -70,18 +70,19 @@ $(document).ready(function (){
         pressure = data.observations.data[0].press_msl;
         humidity = data.observations.data[0].rel_hum;
         feelsLike = data.observations.data[0].apparent_t;
+        locale = data.observations.header[0].name;
 
         //temp = 3;
         //windSpeed = 38;
         setPinwheelSpeed(windSpeed);
         $("#errormsg").text("");
         $("#windSpeed").text(windSpeed + "km/h " + windDirection);
-        $("#temp").text(temp + "°");
+        $("#temp").html(temp + "&deg;");
         $("#other_params").html
           ("<strong>" + humidity + "</strong>% humidity <br/><strong>" 
            + pressure + "</strong> MSLP \(hPa\) <br/>" 
-           + "Feels like <strong>" + feelsLike + "</strong>°");
-        $("#time").text(time);
+           + "Feels like <strong>" + feelsLike + "</strong>&deg;");
+        $("#time").html("<strong>"+ locale + "</strong>: " + time);
         $("body").css("background-color", getColorFromTemp(temp));
         if(temp < 10 && temp > -5) {
           $(".transparent").css("color","black");
