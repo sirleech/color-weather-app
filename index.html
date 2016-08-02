@@ -10,7 +10,8 @@
 <div class="transparent" id="temp">
 </div>
 <div class="transparent" id="windSpeed"></div>
-<div class="transparent" id="pressure"></div>
+<div class="transparent" id="other_params"></div>
+<img src="pinwheel-white.png" id="pinwheel" />
 <div id="time">
 </div>
 
@@ -67,26 +68,27 @@ $(document).ready(function (){
         windDirection = data.observations.data[0].wind_dir;
         time = data.observations.header[0].refresh_message;
         pressure = data.observations.data[0].press_msl;
+        humidity = data.observations.data[0].rel_hum;
 
         //temp = 3;
         //windSpeed = 38;
-        //setPinwheelSpeed(windSpeed);
+        setPinwheelSpeed(windSpeed);
         $("#errormsg").text("");
         $("#windSpeed").text(windSpeed + "km/h " + windDirection);
         $("#temp").text(temp + "°");
-        $("#pressure").text(pressure + ' MSLP \(hPa\)');
+        $("#other_params").html(humidity + "% humidity <br/>" + pressure + ' MSLP \(hPa\)');
         $("#time").text(time);
         $("body").css("background-color", getColorFromTemp(temp));
         if(temp < 7 && temp > -5) {
           $(".transparent").css("color","black");
           $(".transparent").css("opacity","0.2");
-          //$("#pinwheel").attr("src","pinwheel-black.png");
-          //$("#pinwheel").css("opacity","0.075");
+          $("#pinwheel").attr("src","pinwheel-black.png");
+          $("#pinwheel").css("opacity","0.06");
         } else {
           $(".transparent").css("color","white");
           $(".transparent").css("opacity","0.75");
-          //$("#pinwheel").attr("src","pinwheel-white.png");
-          //$("#pinwheel").css("opacity","0.4");
+          $("#pinwheel").attr("src","pinwheel-white.png");
+          $("#pinwheel").css("opacity","0.3");
         }
       },
       complete: function() {
