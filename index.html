@@ -83,7 +83,7 @@ $(document).ready(function (){
            + "Feels like <strong>" + feelsLike + "</strong>°");
         $("#time").text(time);
         $("body").css("background-color", getColorFromTemp(temp));
-        if(temp < 7 && temp > -5) {
+        if(temp < 10 && temp > -5) {
           $(".transparent").css("color","black");
           $(".transparent").css("opacity","0.2");
           $("#pinwheel").attr("src","pinwheel-black.png");
