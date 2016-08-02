@@ -1,5 +1,5 @@
 body {background-color:gray; overflow:hidden;}
-#temp, #windSpeed, #time , #other_params {color: white; font-family: -apple-system, "Helvetica Neue", "Lucida Grande"; margin-left: 20px;}
+#temp, #windSpeed, #time , #other_params {color: white; font-family: -apple-system, "Helvetica Neue", "Lucida Grande", Sans-Serif; margin-left: 20px;}
 #temp {font-size: 9em; font-weight: 700; letter-spacing: -0.05em;}
 #windSpeed {position: relative; font-size: 4em; left: 65px; top: 0px;}
 #time {position: absolute; top: 93.5%; font-size: 15px; color: black; z-index: 10; opacity: 0.4; left: 10px;}
