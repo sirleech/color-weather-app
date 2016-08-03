@@ -22,4 +22,7 @@
 #curl http://www.bom.gov.au/fwo/IDW60901/IDW60901.94608.json > /Users/chris/git_projects/color-weather-app/output.json
 
 # Hobart
-curl http://www.bom.gov.au/fwo/IDT60901/IDT60901.94970.json > /Users/chris/git_projects/color-weather-app/output.json
+# curl http://www.bom.gov.au/fwo/IDT60901/IDT60901.94970.json > /Users/chris/git_projects/color-weather-app/output.json
+
+# Casey Antarctica
+curl http://www.bom.gov.au/fwo/IDT60803/IDT60803.89611.json > /Users/chris/git_projects/color-weather-app/output.json
