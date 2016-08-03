@@ -68,6 +68,9 @@ $(document).ready(function (){
         windDirection = data.observations.data[0].wind_dir;
         time = data.observations.header[0].refresh_message;
         pressure = data.observations.data[0].press_msl;
+        if (pressure == null) {
+          pressure = "(no data)"
+        }
         humidity = data.observations.data[0].rel_hum;
         feelsLike = data.observations.data[0].apparent_t;
         locale = data.observations.header[0].name;

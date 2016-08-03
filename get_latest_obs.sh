@@ -10,4 +10,10 @@
 #curl http://www.bom.gov.au/fwo/IDN60903/IDN60903.94926.json > /Users/chris/git_projects/color-weather-app/output.json
 
 #Melbourne Olymping Park
-curl http://www.bom.gov.au/fwo/IDV60901/IDV60901.95936.json > /Users/chris/git_projects/color-weather-app/output.json
+#curl http://www.bom.gov.au/fwo/IDV60901/IDV60901.95936.json > /Users/chris/git_projects/color-weather-app/output.json
+
+#Brisbane
+#curl http://www.bom.gov.au/fwo/IDQ60901/IDQ60901.94576.json > /Users/chris/git_projects/color-weather-app/output.json
+
+#Adelaide
+curl http://www.bom.gov.au/fwo/IDS60901/IDS60901.94675.json > /Users/chris/git_projects/color-weather-app/output.json
