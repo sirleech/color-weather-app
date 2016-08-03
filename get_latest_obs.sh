@@ -16,4 +16,10 @@
 #curl http://www.bom.gov.au/fwo/IDQ60901/IDQ60901.94576.json > /Users/chris/git_projects/color-weather-app/output.json
 
 #Adelaide
-curl http://www.bom.gov.au/fwo/IDS60901/IDS60901.94675.json > /Users/chris/git_projects/color-weather-app/output.json
+#curl http://www.bom.gov.au/fwo/IDS60901/IDS60901.94675.json > /Users/chris/git_projects/color-weather-app/output.json
+
+# Perth
+#curl http://www.bom.gov.au/fwo/IDW60901/IDW60901.94608.json > /Users/chris/git_projects/color-weather-app/output.json
+
+# Hobart
+curl http://www.bom.gov.au/fwo/IDT60901/IDT60901.94970.json > /Users/chris/git_projects/color-weather-app/output.json
