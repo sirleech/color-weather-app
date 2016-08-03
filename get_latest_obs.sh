@@ -7,4 +7,7 @@
 #curl http://www.bom.gov.au/fwo/IDD60901/IDD60901.94120.json > /Users/chris/git_projects/color-weather-app/output.json
 
 # Canberra Airport
-curl http://www.bom.gov.au/fwo/IDN60903/IDN60903.94926.json > /Users/chris/git_projects/color-weather-app/output.json
+#curl http://www.bom.gov.au/fwo/IDN60903/IDN60903.94926.json > /Users/chris/git_projects/color-weather-app/output.json
+
+#Melbourne Olymping Park
+curl http://www.bom.gov.au/fwo/IDV60901/IDV60901.95936.json > /Users/chris/git_projects/color-weather-app/output.json
