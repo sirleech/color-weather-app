@@ -25,4 +25,7 @@
 # curl http://www.bom.gov.au/fwo/IDT60901/IDT60901.94970.json > /Users/chris/git_projects/color-weather-app/output.json
 
 # Casey Antarctica
-curl http://www.bom.gov.au/fwo/IDT60803/IDT60803.89611.json > /Users/chris/git_projects/color-weather-app/output.json
+#curl http://www.bom.gov.au/fwo/IDT60803/IDT60803.89611.json > /Users/chris/git_projects/color-weather-app/output.json
+
+# Broome
+curl http://www.bom.gov.au/fwo/IDW60801/IDW60801.94203.json > /Users/chris/git_projects/color-weather-app/output.json
