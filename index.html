@@ -12,6 +12,7 @@
 </div>
 
 <div class="transparent" id="windSpeed"></div>
+<img src="arrow-white.png" id="windDirectionArrow" />
 <div class="transparent" id="humidity"></div>
 <img src="pinwheel-white.png" id="pinwheel" />
 </div>
@@ -84,7 +85,9 @@ $(document).ready(function (){
         locale = data.observations.header[0].name;
 
         //temp = 3;
+        //windDirection = "NNW";
         //windSpeed = 38;
+        
         setPinwheelSpeed(windSpeed);
         $("#errormsg").text("");
         $("#location").text(locale);
@@ -92,15 +95,63 @@ $(document).ready(function (){
         $("#temp").html(temp + "&deg;");
         $("#humidity").html("RH " + humidity + "%");
         $("body").css("background-color", getColorFromTemp(temp));
+        
+        // turn off the arrow if there is no wind
+        if (windDirection == 'CALM'){
+          $("#windDirectionArrow").css("opacity","0.0");
+        } else {
+          $("#windDirectionArrow").css("opacity","0.5");
+        }
+        
+        // rotate arrow depending on direction
+        if (windDirection == 'N') {
+          $("#windDirectionArrow").css("transform","rotate(180deg)");
+        } else if (windDirection == 'S'){
+          $("#windDirectionArrow").css("transform","rotate(0deg)");
+        } else if (windDirection == 'W'){
+          $("#windDirectionArrow").css("transform","rotate(90deg)");
+        } else if (windDirection == 'E'){
+          $("#windDirectionArrow").css("transform","rotate(270deg)");
+        } else if (windDirection == 'NE'){
+          $("#windDirectionArrow").css("transform","rotate(225deg)");
+        } else if (windDirection == 'NNE'){
+          $("#windDirectionArrow").css("transform","rotate(202.5deg)");
+        }  else if (windDirection == 'ENE'){
+          $("#windDirectionArrow").css("transform","rotate(247.5deg)");
+        }  else if (windDirection == 'SE'){
+          $("#windDirectionArrow").css("transform","rotate(-45deg)");
+        }  else if (windDirection == 'ESE'){
+          $("#windDirectionArrow").css("transform","rotate(-67.5deg)");
+        }  else if (windDirection == 'SSE'){
+          $("#windDirectionArrow").css("transform","rotate(-22.5deg)");
+        }  else if (windDirection == 'SW'){
+          $("#windDirectionArrow").css("transform","rotate(45deg)");
+        }  else if (windDirection == 'SSW'){
+          $("#windDirectionArrow").css("transform","rotate(22.5deg)");
+        }  else if (windDirection == 'WSW'){
+          $("#windDirectionArrow").css("transform","rotate(67.5deg)");
+        }  else if (windDirection == 'NW'){
+          $("#windDirectionArrow").css("transform","rotate(135deg)");
+        }  else if (windDirection == 'WNW'){
+          $("#windDirectionArrow").css("transform","rotate(112.5deg)");
+        }  else if (windDirection == 'NNW'){
+          $("#windDirectionArrow").css("transform","rotate(157.5deg)");
+        }
+        
+        
+        
+        
         if(temp < 10 && temp > -5) {
           $(".transparent").css("color","black");
           $(".transparent").css("opacity","0.4");
           $("#pinwheel").attr("src","pinwheel-black.png");
+          $("#windDirectionArrow").attr("src","arrow-black.png");
           $("#pinwheel").css("opacity","0.1");
         } else {
           $(".transparent").css("color","white");
           $(".transparent").css("opacity","0.75");
           $("#pinwheel").attr("src","pinwheel-white.png");
+          $("#windDirectionArrow").attr("src","arrow-white.png");
           $("#pinwheel").css("opacity","0.3");
         }
       },
