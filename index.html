@@ -7,6 +7,7 @@
 <body>
 
 <div id="errormsg">Error!! No Data!</div>
+<div class="transparent" id="location"></div>
 <div class="transparent" id="temp">
 </div>
 <div class="transparent" id="windSpeed"></div>
@@ -28,6 +29,7 @@ $(document).ready(function (){
   
   var windSpeed = 0;
   var previousWindSpeed;
+  var obsUrl;
   
   function setPinwheelSpeed(speedKmString) {
     var secondsPerSpin,secondsPerSpinString,cssString,speedKm;
@@ -56,12 +58,22 @@ $(document).ready(function (){
     $("#pinwheel").css("animation",cssString);
   }
   
-  getWeatherData();
+  $.ajax({
+          url : "obsUrl.txt",
+          dataType: "text",
+          success : function (data) {
+              obsUrl = data;
+              getWeatherData();
+          }
+      });
+  
   
   function getWeatherData(){
+    
+    
     $.ajax({
       dataType: "json",
-      url: 'output.json',
+      url: obsUrl,
       success: function (data){
         temp = data.observations.data[0].air_temp;
         windSpeed = data.observations.data[0].wind_spd_kmh;
@@ -79,13 +91,14 @@ $(document).ready(function (){
         //windSpeed = 38;
         setPinwheelSpeed(windSpeed);
         $("#errormsg").text("");
+        $("#location").text(locale);
         $("#windSpeed").text(windSpeed + "km/h " + windDirection);
         $("#temp").html(temp + "&deg;");
         $("#other_params").html
           ("<strong>" + humidity + "</strong>% humidity <br/><strong>" 
            + pressure + "</strong> MSLP \(hPa\) <br/>" 
            + "Feels like <strong>" + feelsLike + "</strong>&deg;");
-        $("#time").html("<strong>"+ locale + "</strong>: " + time);
+        $("#time").html(time);
         $("body").css("background-color", getColorFromTemp(temp));
         if(temp < 10 && temp > -5) {
           $(".transparent").css("color","black");
