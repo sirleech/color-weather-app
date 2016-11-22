@@ -10,7 +10,9 @@
 <div class="transparent" id="location"></div>
 <div class="transparent" id="temp">
 </div>
+
 <div class="transparent" id="windSpeed"></div>
+<div class="transparent" id="humidity"></div>
 <img src="pinwheel-white.png" id="pinwheel" />
 </div>
 
@@ -77,6 +79,7 @@ $(document).ready(function (){
         windSpeed = data.observations.data[0].wind_spd_kmh;
         windDirection = data.observations.data[0].wind_dir;
         time = data.observations.header[0].refresh_message;
+        humidity = data.observations.data[0].rel_hum;
 
         locale = data.observations.header[0].name;
 
@@ -87,6 +90,7 @@ $(document).ready(function (){
         $("#location").text(locale);
         $("#windSpeed").text(windSpeed + "km/h " + windDirection);
         $("#temp").html(temp + "&deg;");
+        $("#humidity").html("RH " + humidity + "%");
         $("body").css("background-color", getColorFromTemp(temp));
         if(temp < 10 && temp > -5) {
           $(".transparent").css("color","black");

@@ -1,11 +1,12 @@
 body {background-color:gray; overflow:hidden;}
-#temp, #windSpeed, #time , #other_params, #location {color: white; font-family: -apple-system, "Helvetica Neue", "Lucida Grande", Sans-Serif; margin-left: 20px;}
+#temp, #windSpeed, #time , #other_params, #location, #humidity {color: white; font-family: -apple-system, "Helvetica Neue", "Lucida Grande", Sans-Serif; margin-left: 20px;}
 #location {font-size: 2em; margin-top: 16px;}
 #temp {font-size: 6.2em; font-weight: 700; letter-spacing: -0.02em;}
-#windSpeed {position: relative; font-size: 2em; left: 68px; top: 5px;}
-#time {position: absolute; top: 93.5%; font-size: 15px; color: black; z-index: 10; opacity: 0.4; left: 10px;}
+#windSpeed {position: relative; font-size: 2em; left: 68px; top: 5px; display: inline}
+#time {position: absolute; top: 93.5%; font-size: 15px; color: black; z-index: 10; left: 10px;}
 #other_params {position: relative; font-size: 1.5em; left: 10px; top: 70px; line-height: 1.3em;}
 #pinwheel {width: 60px; position: absolute; font-size: 6em; left: 20px; top: 167px;}
+#humidity {font-size: 1.3em; display: inline; position: relative; left: 70px; top:4px;}
 
 /**
 .lightWind
